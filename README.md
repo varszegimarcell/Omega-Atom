@@ -13,3 +13,10 @@ The Atom app for Numworks. This repository is a fork of [M4xi1m3/nw-atom](https:
 
 * For **new features and bug fixes**, please contribute on the main repository [here](https://github.com/M4xi1m3/nw-atom).
 * Otherwise, if you want to **fix a bug that affects only Omega**, you can do a [pull request](https://github.com/Omega-Numworks/Omega-Atom/pulls) or [post issues](https://github.com/Omega-Numworks/Omega-Atom/issues).
+
+<details>
+  <summary><b>Screenshot</b></summary>
+  
+  ![Atom](https://github.com/Omega-Numworks/Omega-Design/blob/master/screenshots/Omega/atom.png)
+
+</details>
