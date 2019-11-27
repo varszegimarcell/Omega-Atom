@@ -16,6 +16,7 @@
 class AtomPalette {
 public:
   constexpr static KDColor Unknown = KDColor::RGB24(0xeeeeee);
+  constexpr static KDColor AtomText = KDColor::RGB24(0x000000);
   constexpr static KDColor AlkaliMetal = KDColor::RGB24(0xffaa00);
   constexpr static KDColor AlkaliEarthMetal = KDColor::RGB24(0xf6f200);
   constexpr static KDColor Lanthanide = KDColor::RGB24(0xffaa8b);
@@ -53,12 +54,12 @@ void AtomView::drawAtom(KDContext * ctx, uint8_t id) const {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), fill);
     ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, KDColorBlack, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
   } else {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), fill);
     ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, KDColorBlack, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
   }
 }
 
@@ -197,10 +198,10 @@ bool AtomView::handleBack() {
 void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   if (partial_draw) {
     partial_draw = false;
-    ctx->fillRect(KDRect(50,   0, 169, 57), KDColorWhite);
-    ctx->fillRect(KDRect( 8, 170, 305, 35), KDColorWhite);
+    ctx->fillRect(KDRect(50,   0, 169, 57), Palette::BackgroundHard);
+    ctx->fillRect(KDRect( 8, 170, 305, 35), Palette::BackgroundHard);
   } else {
-    ctx->fillRect(bounds(), KDColorWhite);
+    ctx->fillRect(bounds(), Palette::BackgroundHard);
   }
   
   for(uint8_t i = 0; i < ATOM_NUMS; i++) {
@@ -209,11 +210,11 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   
   if (!copy_mode) {
     if (atomsdefs[cursor_pos].y >= 7) {
-      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 15 + atomsdefs[cursor_pos].y * 17, 18, 18), KDColorBlack);
-      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 16 + atomsdefs[cursor_pos].y * 17, 16, 16), KDColorBlack);
+      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 15 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::Text);
+      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 16 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::Text);
     } else {
-      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 6 + atomsdefs[cursor_pos].y * 17, 18, 18), KDColorBlack);
-      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 7 + atomsdefs[cursor_pos].y * 17, 16, 16), KDColorBlack);
+      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 6 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::Text);
+      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 7 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::Text);
     }
   }
   
@@ -233,12 +234,12 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   // , KDColorBlack, Palette::SelectDark
   
   if (copy_mode && copy_cursor_pos == 0)
-    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, KDColorBlack, Palette::SelectDark);
+    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
   else
     ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont);
     
   if (copy_mode && copy_cursor_pos == 1)
-    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, KDColorBlack, Palette::SelectDark);
+    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
   else
     ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont);
   
@@ -254,7 +255,7 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   buffer[5  + num] = 0;
   
   if (copy_mode && copy_cursor_pos == 2)
-    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, KDColorBlack, Palette::SelectDark);
+    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
   else
     ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont);
   
@@ -280,7 +281,7 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   
   
   if (copy_mode && copy_cursor_pos == 3)
-    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, KDColorBlack, Palette::SelectDark);
+    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
   else
     ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont);
 }

@@ -9,6 +9,8 @@
 
 The Atom app for Numworks. This repository is a fork of [M4xi1m3/nw-atom](https://github.com/M4xi1m3/nw-atom). We made it to fix compatibility issues with [Omega](https://github.com/Omega-Numworks/Omega).
 
+NOTE: Omega-Atom is **only** compatible with Omega. To download the app for Epsilon or Delta, please download it [here](https://github.com/M4xi1m3/nw-atom).
+
 ## Contributing
 
 * For **new features and bug fixes**, please contribute on the main repository [here](https://github.com/M4xi1m3/nw-atom).
