@@ -210,11 +210,11 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   
   if (!copy_mode) {
     if (atomsdefs[cursor_pos].y >= 7) {
-      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 15 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::Text);
-      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 16 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::Text);
+      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 15 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::PrimaryText);
+      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 16 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::PrimaryText);
     } else {
-      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 6 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::Text);
-      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 7 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::Text);
+      ctx->strokeRect(KDRect(6 + atomsdefs[cursor_pos].x * 17, 6 + atomsdefs[cursor_pos].y * 17, 18, 18), Palette::PrimaryText);
+      ctx->strokeRect(KDRect(7 + atomsdefs[cursor_pos].x * 17, 7 + atomsdefs[cursor_pos].y * 17, 16, 16), Palette::PrimaryText);
     }
   }
   
@@ -228,20 +228,20 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   Poincare::Integer(atomsdefs[cursor_pos].num).serialize(protons, 4);
   Poincare::Integer(atomsdefs[cursor_pos].neutrons + atomsdefs[cursor_pos].num).serialize(nucleons, 4);
   
-  ctx->drawString(atomsdefs[cursor_pos].symbol, KDPoint(73, 23), KDFont::LargeFont, Palette::Text, Palette::BackgroundHard);
-  ctx->drawString(I18n::translate(atomsdefs[cursor_pos].name), KDPoint(110, 27), KDFont::SmallFont, Palette::Text, Palette::BackgroundHard);
+  ctx->drawString(atomsdefs[cursor_pos].symbol, KDPoint(73, 23), KDFont::LargeFont, Palette::PrimaryText, Palette::BackgroundHard);
+  ctx->drawString(I18n::translate(atomsdefs[cursor_pos].name), KDPoint(110, 27), KDFont::SmallFont, Palette::PrimaryText, Palette::BackgroundHard);
   
   // , KDColorBlack, Palette::SelectDark
   
   if (copy_mode && copy_cursor_pos == 0)
-    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
+    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, Palette::PrimaryText, Palette::SelectDark);
   else
-    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, Palette::Text, Palette::BackgroundHard);
+    ctx->drawString(nucleons, KDPoint(50, 17), KDFont::SmallFont, Palette::PrimaryText, Palette::BackgroundHard);
     
   if (copy_mode && copy_cursor_pos == 1)
-    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
+    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, Palette::PrimaryText, Palette::SelectDark);
   else
-    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, Palette::Text, Palette::BackgroundHard);
+    ctx->drawString(protons, KDPoint(50, 31), KDFont::SmallFont, Palette::PrimaryText, Palette::BackgroundHard);
   
   char buffer[20];
   
@@ -255,9 +255,9 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   buffer[5  + num] = 0;
   
   if (copy_mode && copy_cursor_pos == 2)
-    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
+    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, Palette::PrimaryText, Palette::SelectDark);
   else
-    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, Palette::Text, Palette::BackgroundHard);
+    ctx->drawString(buffer, KDPoint(8, 174), KDFont::SmallFont, Palette::PrimaryText, Palette::BackgroundHard);
   
   
   memset(buffer, ' ', 19);
@@ -281,9 +281,9 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
   
   
   if (copy_mode && copy_cursor_pos == 3)
-    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, Palette::Text, Palette::SelectDark);
+    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, Palette::PrimaryText, Palette::SelectDark);
   else
-    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, Palette::Text, Palette::BackgroundHard);
+    ctx->drawString(buffer, KDPoint(8, 188), KDFont::SmallFont, Palette::PrimaryText, Palette::BackgroundHard);
 }
 
 }
