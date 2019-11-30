@@ -11,35 +11,6 @@
 
 #define ATOM_VIEW_VARS_NUM 4
 
-#ifndef ATOM_APP_USE_PALETTE
-
-class AtomPalette {
-public:
-  constexpr static KDColor Unknown = KDColor::RGB24(0xeeeeee);
-  constexpr static KDColor AtomText = KDColor::RGB24(0x000000);
-  constexpr static KDColor AlkaliMetal = KDColor::RGB24(0xffaa00);
-  constexpr static KDColor AlkaliEarthMetal = KDColor::RGB24(0xf6f200);
-  constexpr static KDColor Lanthanide = KDColor::RGB24(0xffaa8b);
-  constexpr static KDColor Actinide = KDColor::RGB24(0xdeaacd);
-  constexpr static KDColor TransitionMetal = KDColor::RGB24(0xde999c);
-  constexpr static KDColor PostTransitionMetal = KDColor::RGB24(0x9cbaac);
-  constexpr static KDColor Metalloid = KDColor::RGB24(0x52ce8b);
-  constexpr static KDColor Halogen = KDColor::RGB24(0x00debd);
-  constexpr static KDColor ReactiveNonmetal = KDColor::RGB24(0x00ee00);
-  constexpr static KDColor NobleGas = KDColor::RGB24(0x8baaff);
-  
-  constexpr static KDColor TableLines = KDColor::RGB24(0x323532);
-  
-  constexpr static KDColor AtomColor[] = {
-    Unknown, AlkaliMetal, AlkaliEarthMetal, Lanthanide, Actinide, TransitionMetal,
-    PostTransitionMetal, Metalloid, Halogen, ReactiveNonmetal, NobleGas
-  };
-};
-
-constexpr KDColor AtomPalette::AtomColor[];
-constexpr KDColor AtomPalette::TableLines;
-#endif
-
 namespace Atom {
 
 AtomView::AtomView() :
@@ -48,18 +19,18 @@ AtomView::AtomView() :
 }
 
 void AtomView::drawAtom(KDContext * ctx, uint8_t id) const {
-  KDColor fill = AtomPalette::AtomColor[(uint8_t)atomsdefs[id].type];
+  KDColor fill = Palette::AtomColor[(uint8_t)atomsdefs[id].type];
 
   if (atomsdefs[id].y >= 7) {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), fill);
-    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
+    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), Palette::AtomTableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, Palette::AtomText, fill);
   } else {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), fill);
-    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
+    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), Palette::AtomTableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, Palette::AtomText, fill);
   }
 }
 
@@ -218,9 +189,9 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
     }
   }
   
-  ctx->fillRect(KDRect(48,  99, 2, 61), AtomPalette::TableLines);
-  ctx->fillRect(KDRect(48, 141, 9,  2), AtomPalette::TableLines);
-  ctx->fillRect(KDRect(48, 158, 9,  2), AtomPalette::TableLines);
+  ctx->fillRect(KDRect(48,  99, 2, 61), Palette::AtomTableLines);
+  ctx->fillRect(KDRect(48, 141, 9,  2), Palette::AtomTableLines);
+  ctx->fillRect(KDRect(48, 158, 9,  2), Palette::AtomTableLines);
 
   char protons[4];
   char nucleons[4];
