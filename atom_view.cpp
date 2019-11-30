@@ -13,7 +13,7 @@
 
 #ifndef ATOM_APP_USE_PALETTE
 
-class Palette {
+class AtomPalette {
 public:
   constexpr static KDColor Unknown = KDColor::RGB24(0xeeeeee);
   constexpr static KDColor AtomText = KDColor::RGB24(0x000000);
@@ -36,8 +36,8 @@ public:
   };
 };
 
-constexpr KDColor Palette::AtomColor[];
-constexpr KDColor Palette::TableLines;
+constexpr KDColor AtomPalette::AtomColor[];
+constexpr KDColor AtomPalette::TableLines;
 #endif
 
 namespace Atom {
@@ -48,18 +48,18 @@ AtomView::AtomView() :
 }
 
 void AtomView::drawAtom(KDContext * ctx, uint8_t id) const {
-  KDColor fill = Palette::AtomColor[(uint8_t)atomsdefs[id].type];
+  KDColor fill = AtomPalette::AtomColor[(uint8_t)atomsdefs[id].type];
 
   if (atomsdefs[id].y >= 7) {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), fill);
-    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), Palette::TableLines);
+    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 15 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, Palette::AtomText, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 17 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
   } else {
     ctx->fillRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), fill);
-    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), Palette::TableLines);
+    ctx->strokeRect(KDRect(6 + atomsdefs[id].x * 17, 6 + atomsdefs[id].y * 17, 18, 18), AtomPalette::TableLines);
     
-    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, Palette::AtomText, fill);
+    ctx->drawString(atomsdefs[id].symbol, KDPoint(8 + atomsdefs[id].x * 17, 8 + atomsdefs[id].y * 17), KDFont::SmallFont, AtomPalette::AtomText, fill);
   }
 }
 
@@ -218,9 +218,9 @@ void AtomView::drawRect(KDContext * ctx, KDRect rect) const {
     }
   }
   
-  ctx->fillRect(KDRect(48,  99, 2, 61), Palette::TableLines);
-  ctx->fillRect(KDRect(48, 141, 9,  2), Palette::TableLines);
-  ctx->fillRect(KDRect(48, 158, 9,  2), Palette::TableLines);
+  ctx->fillRect(KDRect(48,  99, 2, 61), AtomPalette::TableLines);
+  ctx->fillRect(KDRect(48, 141, 9,  2), AtomPalette::TableLines);
+  ctx->fillRect(KDRect(48, 158, 9,  2), AtomPalette::TableLines);
 
   char protons[4];
   char nucleons[4];
