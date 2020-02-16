@@ -19,7 +19,7 @@ const Image * App::Descriptor::icon() {
 }
 
 int App::Descriptor::examinationLevel() {
-  return App::Descriptor::BasicExaminationLevel;
+  return App::Descriptor::NoExaminationLevel;
 }
 
 App * App::Snapshot::unpack(Container * container) {
