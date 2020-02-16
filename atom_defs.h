@@ -70,7 +70,7 @@ const AtomDef atomsdefs[ATOM_NUMS] = {
   { 32, 13,  3, METALLOID               , I18n::Message::AtomName_Germanium    , "Ge"  ,  42, 72.64       , 2.01  },
   { 33, 14,  3, METALLOID               , I18n::Message::AtomName_Arsenic      , "As"  ,  42, 74.921595   , 2.18  },
   { 34, 15,  3, REACTIVE_NONMETAL       , I18n::Message::AtomName_Selenium     , "Se"  ,  46, 78.971      , 2.48  },
-  { 35, 16,  3, HALOGEN                 , I18n::Message::AtomName_Bromine      , "Br"  ,  46, 79.904      , 2.96  },
+  { 35, 16,  3, HALOGEN                 , I18n::Message::AtomName_Bromine      , "Br"  ,  44, 79.904      , 2.96  },
   { 36, 17,  3, NOBLE_GAS               , I18n::Message::AtomName_Krypton      , "Kr"  ,  48, 83.798      , 3.00  },
   
   { 37,  0,  4, ALKALI_METAL            , I18n::Message::AtomName_Rubidium     , "Rb"  ,  48, 85.4678     , 0.82  },
